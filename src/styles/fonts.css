@@ -1,0 +1,42 @@
+/* ============================================================
+   halpme — Fonts
+   Mono / brand : Monaspace Neon  (GitHub Next, OFL)
+   Prose / UI   : Hanken Grotesk  (OFL)
+   Display alt  : Space Grotesk   (OFL, optional)
+   ============================================================ */
+
+/* ---- Prose + display (Google Fonts) ----------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+/* ---- Monaspace Neon (Fontsource CDN) ---------------------- *
+   For PRODUCTION, self-host instead of using the CDN:
+   1. npm i @fontsource/monaspace-neon   (or download the woff2 files)
+   2. Replace the URLs below with your local paths, e.g. /fonts/monaspace-neon-400.woff2
+   We use the standard webfont (NOT the Nerd Font build).               */
+
+@font-face {
+  font-family: 'Monaspace Neon';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/monaspace-neon@latest/latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Monaspace Neon';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/monaspace-neon@latest/latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Monaspace Neon';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/fontsource/fonts/monaspace-neon@latest/latin-700-normal.woff2') format('woff2');
+}
+
+/* Roles:
+   --font-mono  = 'Monaspace Neon'  -> wordmark, code, terminal output, labels, chips
+   --font-sans  = 'Hanken Grotesk'  -> headings, body, UI prose
+   Weights in use: mono 400/500/700 ; sans 400/500/600/700/800            */

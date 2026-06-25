@@ -1,0 +1,133 @@
+---
+const features = [
+  {
+    number: '01',
+    heading: 'Forgot your own alias?',
+    body: "You wrote it six months ago. It's in your .zshrc somewhere. halpme git finds it in a second.",
+    chip: 'halpme git',
+    chipColor: 'coral',
+  },
+  {
+    number: '02',
+    heading: 'Stays in your terminal.',
+    body: "No browser tab, no wiki login, no copy-paste lag. Your guide renders right where you're already working.",
+    chip: 'halpme brew',
+    chipColor: 'teal',
+  },
+  {
+    number: '03',
+    heading: 'Your words, not a wiki.',
+    body: "Add a Markdown file, add a section — it shows up in halpme automatically. It's your setup, documented your way.",
+    chip: '~/.config/halpme/',
+    chipColor: 'coral',
+  },
+];
+---
+
+<section class="features">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">02 &mdash; Why halpme</div>
+      <h2>Built for the setup you actually have.</h2>
+    </div>
+
+    <div class="cards">
+      {features.map((f) => (
+        <div class="card">
+          <div class="card-number">{f.number}</div>
+          <h3>{f.heading}</h3>
+          <p>{f.body}</p>
+          <span class={`chip chip-${f.chipColor}`}>{f.chip}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .features {
+    padding: var(--section-pad-y) 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-header {
+    margin-bottom: 48px;
+  }
+
+  .eyebrow {
+    margin-bottom: 14px;
+  }
+
+  h2 {
+    font-size: var(--fs-h2);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    max-width: 30ch;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--paper-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--r-card);
+    padding: 28px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-number {
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted-3);
+  }
+
+  h3 {
+    font-size: var(--fs-h3);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+    flex: 1;
+  }
+
+  .chip {
+    display: inline-block;
+    align-self: flex-start;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    border-radius: var(--r-chip);
+    padding: 3px 10px;
+    margin-top: 4px;
+  }
+
+  .chip-coral {
+    background: var(--coral-tint-bg);
+    color: var(--coral-tint-text);
+  }
+
+  .chip-teal {
+    background: var(--teal-tint-bg);
+    color: var(--teal-tint-text);
+  }
+
+  @media (max-width: 780px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

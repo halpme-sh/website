@@ -1,0 +1,90 @@
+---
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="brand">
+      <span class="chev" aria-hidden="true">&#10095;</span>halpme
+    </div>
+
+    <p class="tagline">Terminal help for your setup.</p>
+
+    <nav class="links" aria-label="Footer links">
+      <a href="https://github.com/halpme-sh/halpme" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <span class="sep" aria-hidden="true">&middot;</span>
+      <a href="#install">Install</a>
+    </nav>
+
+    <p class="meta">
+      MIT license &middot; by
+      <a href="https://ryangildea.com" target="_blank" rel="noopener noreferrer">Ryan Gildea</a>
+      &middot;
+      <a href="https://github.com/rgildea" target="_blank" rel="noopener noreferrer">@rgildea &#8599;</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 0 40px;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .brand {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .brand .chev {
+    color: var(--accent);
+    margin-right: 4px;
+  }
+
+  .tagline {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .links a {
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 0.15s;
+  }
+
+  .links a:hover { color: var(--ink); }
+
+  .sep { color: var(--border); }
+
+  .meta {
+    font-size: 13px;
+    color: var(--muted-2);
+  }
+
+  .meta a {
+    color: var(--muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
+  .meta a:hover { color: var(--ink); }
+</style>

@@ -1,0 +1,224 @@
+---
+---
+
+<section class="how">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">03 &mdash; How it works</div>
+      <h2>Three steps. Then it just works.</h2>
+    </div>
+
+    <div class="steps">
+      <!-- Step 1 -->
+      <div class="step">
+        <div class="step-label">
+          <span class="step-num">01</span>
+          <h3>Install</h3>
+        </div>
+        <p>Run one command in Claude Code. The skill installs the script, sets up your config directory, and kicks off an AI-assisted session to build your guide from existing dotfiles.</p>
+        <div class="term">
+          <div class="term-bar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <div class="term-body">
+            <div class="term-line">
+              <span class="term-prompt">$</span> npx skills add halpme-sh/halpme
+            </div>
+            <div class="term-line term-dim">Installing halpme skill...</div>
+            <div class="term-line term-dim">Setting up ~/.config/halpme...</div>
+            <div class="term-line term-success">&#10003; halpme ready</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step">
+        <div class="step-label">
+          <span class="step-num">02</span>
+          <h3>Add your notes</h3>
+        </div>
+        <p>Drop a Markdown file in <code>~/.config/halpme/</code>. Each file is a topic. Use the annotation convention to set the keyword and description that appear in your guide.</p>
+        <div class="term">
+          <div class="term-bar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="term-path">~/.config/halpme/git.md</span>
+          </div>
+          <div class="term-body">
+            <div class="term-line term-comment">### Git Workflow</div>
+            <div class="term-line term-dim">&lt;!-- halpme: git | Daily aliases --&gt;</div>
+            <div class="term-spacer"></div>
+            <div class="term-line term-comment">### Undo a commit</div>
+            <div class="term-line term-dim">&lt;!-- halpme: git | Undo without losing work --&gt;</div>
+            <div class="term-line term-dim">&#96;git reset --soft HEAD~1&#96;</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step">
+        <div class="step-label">
+          <span class="step-num">03</span>
+          <h3>Find anything</h3>
+        </div>
+        <p>Type <code>halpme</code> to browse your full guide, or <code>halpme &lt;topic&gt;</code> to jump straight to a section. Rendered by glow, right in your terminal.</p>
+        <div class="term">
+          <div class="term-bar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <div class="term-body">
+            <div class="term-line">
+              <span class="term-prompt">$</span> halpme git
+            </div>
+            <div class="term-spacer"></div>
+            <div class="term-line term-heading">git &middot; Daily aliases &amp; undo commands</div>
+            <div class="term-rule">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</div>
+            <div class="term-line term-dim">Git Workflow</div>
+            <div class="term-line term-dim">Undo a commit</div>
+            <div class="term-line term-dim">Stashing</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how {
+    padding: var(--section-pad-y) 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-header {
+    margin-bottom: 48px;
+  }
+
+  .eyebrow {
+    margin-bottom: 14px;
+  }
+
+  h2 {
+    font-size: var(--fs-h2);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    align-items: start;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .step-label {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .step-num {
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  h3 {
+    font-size: var(--fs-h3);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--n-100);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: var(--ink);
+  }
+
+  /* terminal windows */
+  .term {
+    background: var(--term-bg);
+    border-radius: var(--r-term);
+    border: 1px solid var(--term-border);
+    box-shadow: var(--shadow-term);
+    overflow: hidden;
+    font-family: var(--font-mono);
+    margin-top: 4px;
+  }
+
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--term-titlebar);
+    border-bottom: 1px solid var(--term-border);
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .dot-red    { background: var(--dot-red); }
+  .dot-yellow { background: var(--dot-yellow); }
+  .dot-green  { background: var(--dot-green); }
+
+  .term-path {
+    margin-left: 8px;
+    color: var(--term-dim);
+    font-size: 11px;
+  }
+
+  .term-body {
+    padding: 14px 16px 18px;
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--term-text);
+  }
+
+  .term-line { display: block; }
+
+  .term-prompt { color: var(--accent); font-weight: 700; margin-right: 8px; }
+  .term-dim    { color: var(--term-dim); }
+  .term-success { color: var(--accent-2); }
+  .term-comment { color: var(--accent); }
+  .term-heading { color: var(--accent); font-weight: 700; }
+  .term-spacer  { height: 10px; }
+
+  .term-rule {
+    color: #3A352F;
+    margin: 3px 0 6px;
+  }
+
+  @media (max-width: 900px) {
+    .steps {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+</style>

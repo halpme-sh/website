@@ -1,0 +1,315 @@
+---
+---
+
+<section class="install" id="install">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">04 &mdash; Install</div>
+      <h2>Get started in seconds.</h2>
+      <p class="intro">
+        The recommended path uses <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer">Claude Code</a>.
+        A manual install is available if you prefer.
+      </p>
+    </div>
+
+    <div class="methods">
+      <!-- Recommended -->
+      <div class="method method-primary">
+        <div class="method-header">
+          <span class="badge">Recommended</span>
+          <h3>Claude Code skill</h3>
+        </div>
+        <p>
+          Run the command below inside Claude Code. It installs the script, sets up
+          <code>~/.config/halpme/</code>, and starts an AI-assisted session to build
+          your guide from your existing dotfiles.
+        </p>
+
+        <div class="cmd">
+          <div class="cmd-line">
+            <span class="prompt">$</span>
+            <span>npx skills add halpme-sh/halpme</span>
+          </div>
+          <button class="copy-btn" data-copy="npx skills add halpme-sh/halpme" aria-label="Copy command">
+            copy
+          </button>
+        </div>
+
+        <p class="sub">
+          Don't have Claude Code?
+          <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer">Get it free &#8599;</a>
+        </p>
+      </div>
+
+      <!-- Manual -->
+      <div class="method method-manual">
+        <div class="method-header">
+          <h3>Manual install</h3>
+        </div>
+        <p>Requires <a href="https://github.com/charmbracelet/glow" target="_blank" rel="noopener noreferrer">glow</a> and a zsh shell.</p>
+
+        <div class="code-block">
+          <div class="code-bar">
+            <span class="code-label">terminal</span>
+            <button class="copy-btn copy-btn-code" aria-label="Copy manual install steps"
+              data-copy="brew install glow
+curl -fsSL https://raw.githubusercontent.com/halpme-sh/halpme/main/halpme.zsh -o ~/bin/halpme.zsh
+chmod +x ~/bin/halpme.zsh
+echo 'alias halpme=&quot;zsh ~/bin/halpme.zsh&quot;' >> ~/.zshrc
+mkdir -p ~/.config/halpme
+for topic in git shell brew; do
+  curl -fsSL &quot;https://raw.githubusercontent.com/halpme-sh/halpme/main/guide/$topic.md&quot; \
+    -o &quot;$HOME/.config/halpme/$topic.md&quot;
+done">
+              copy
+            </button>
+          </div>
+          <pre class="code-body"><code><span class="c"># 1. Install glow (required)</span>
+brew install glow
+
+<span class="c"># 2. Download the script</span>
+curl -fsSL https://raw.githubusercontent.com/halpme-sh/halpme/main/halpme.zsh \
+  -o ~/bin/halpme.zsh
+chmod +x ~/bin/halpme.zsh
+
+<span class="c"># 3. Add alias to your shell config</span>
+echo 'alias halpme="zsh ~/bin/halpme.zsh"' >> ~/.zshrc
+
+<span class="c"># 4. Copy starter topic files</span>
+mkdir -p ~/.config/halpme
+for topic in git shell brew; do
+  curl -fsSL "https://raw.githubusercontent.com/halpme-sh/halpme/main/guide/$topic.md" \
+    -o "$HOME/.config/halpme/$topic.md"
+done</code></pre>
+        </div>
+
+        <p class="source-link">
+          Source, issues, and full docs on
+          <a href="https://github.com/halpme-sh/halpme" target="_blank" rel="noopener noreferrer">
+            GitHub &#8599;
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const text = btn.dataset.copy ?? '';
+      navigator.clipboard?.writeText(text).then(() => {
+        btn.textContent = 'copied ✓';
+        setTimeout(() => { btn.textContent = 'copy'; }, 1600);
+      });
+    });
+  });
+</script>
+
+<style>
+  .install {
+    padding: var(--section-pad-y) 0;
+    border-top: 1px solid var(--border);
+    background: var(--paper-raised);
+  }
+
+  .section-header {
+    margin-bottom: 48px;
+    max-width: 56ch;
+  }
+
+  .eyebrow {
+    margin-bottom: 14px;
+  }
+
+  h2 {
+    font-size: var(--fs-h2);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .intro {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .intro a, .sub a, .source-link a {
+    color: var(--accent-strong);
+  }
+
+  .methods {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .method {
+    border: 1px solid var(--border);
+    border-radius: var(--r-card);
+    padding: 28px 28px 24px;
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .method-primary {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+
+  .method-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  h3 {
+    font-size: var(--fs-h3);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    background: var(--coral-tint-bg);
+    color: var(--coral-tint-text);
+    padding: 3px 9px;
+    border-radius: var(--r-pill);
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--n-100);
+    padding: 1px 5px;
+    border-radius: 4px;
+    color: var(--ink);
+  }
+
+  /* inline install command */
+  .cmd {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--ink);
+    border-radius: var(--r-input);
+    overflow: hidden;
+    background: var(--term-bg);
+    font-family: var(--font-mono);
+  }
+
+  .cmd-line {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    font-size: 13px;
+    color: var(--term-text);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .prompt { color: var(--accent); flex-shrink: 0; }
+
+  .copy-btn {
+    border: none;
+    border-left: 1px solid var(--term-border);
+    background: var(--term-titlebar);
+    color: var(--term-text);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 0 14px;
+    cursor: pointer;
+  }
+
+  .copy-btn:hover { background: var(--term-border); }
+
+  .sub {
+    font-size: 13px;
+    color: var(--muted-2);
+    margin-top: -4px;
+  }
+
+  /* code block */
+  .code-block {
+    border: 1px solid var(--term-border);
+    border-radius: var(--r-term);
+    overflow: hidden;
+    font-family: var(--font-mono);
+    background: var(--term-bg);
+  }
+
+  .code-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 14px;
+    background: var(--term-titlebar);
+    border-bottom: 1px solid var(--term-border);
+  }
+
+  .code-label {
+    font-size: 11px;
+    color: var(--term-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .copy-btn-code {
+    border: none;
+    background: transparent;
+    color: var(--term-dim);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 2px 6px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .copy-btn-code:hover { color: var(--term-text); }
+
+  .code-body {
+    margin: 0;
+    padding: 16px 18px 20px;
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: var(--term-text);
+    overflow-x: auto;
+  }
+
+  .code-body code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  .c { color: var(--term-dim); }
+
+  .source-link {
+    font-size: 13px;
+    color: var(--muted-2);
+  }
+
+  @media (max-width: 780px) {
+    .methods {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>halpme — hero reference</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="design-tokens.css">
+<style>
+  /* ----------------------------------------------------------
+     Self-contained reference build of the halpme.sh hero.
+     Framework-free. All values come from design-tokens.css.
+     Recreate this in your stack (React/Astro/etc).
+     ---------------------------------------------------------- */
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+
+  /* --- shared wordmark bits --- */
+  .hm-cursor {
+    display: inline-block;
+    width: 0.5em; height: 1em;
+    background: var(--accent);
+    border-radius: 2px;
+    margin-left: 6px;
+    animation: hm-blink var(--cursor-blink) steps(1, end) infinite;
+  }
+
+  /* --- nav --- */
+  header {
+    position: sticky; top: 0; z-index: 30;
+    background: rgba(246, 241, 233, 0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: var(--container); margin: 0 auto;
+    padding: 13px var(--container-pad);
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 9px;
+    font-family: var(--font-mono); font-weight: 700; font-size: 18px; letter-spacing: -0.02em;
+  }
+  .brand .chev { color: var(--accent); }
+  .brand .hm-cursor { width: 0.52em; height: 1.05em; transform: translateY(2px); margin-left: 0; }
+  nav.links { display: flex; gap: 30px; font-size: 14px; font-weight: 500; color: var(--ink-soft); }
+  nav.links a { text-decoration: none; }
+  .gh {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+    text-decoration: none; border: 1px solid var(--ink);
+    border-radius: 8px; padding: 7px 13px;
+  }
+  .gh span { color: var(--accent); }
+
+  /* --- hero layout --- */
+  .hero {
+    max-width: var(--container); margin: 0 auto;
+    padding: 74px var(--container-pad) 78px;
+    display: grid; grid-template-columns: 1.04fr 0.96fr; gap: 56px; align-items: center;
+  }
+  .eyebrow {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 26px;
+  }
+  .wordmark {
+    display: flex; align-items: center;
+    font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-wordmark);
+    letter-spacing: -0.04em; line-height: 1; margin-bottom: 28px;
+  }
+  .wordmark .chev { color: var(--accent); margin-right: 10px; }
+  h1 {
+    font-family: var(--font-display); font-size: 30px; line-height: var(--lh-head);
+    font-weight: 700; letter-spacing: -0.02em; margin: 0 0 16px; max-width: 18ch;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .lede { font-size: 16.5px; line-height: 1.6; color: var(--muted); margin: 0 0 30px; max-width: 46ch; }
+
+  /* --- install command --- */
+  .cmd {
+    display: flex; align-items: stretch; max-width: 430px;
+    border: 1px solid var(--ink); border-radius: var(--r-input);
+    overflow: hidden; background: var(--term-bg); font-family: var(--font-mono);
+  }
+  .cmd .line {
+    flex: 1; display: flex; align-items: center; gap: 10px;
+    padding: 13px 16px; font-size: 13.5px; color: var(--term-text);
+    white-space: nowrap; overflow: hidden;
+  }
+  .cmd .line .p { color: var(--accent); }
+  .cmd button {
+    border: none; border-left: 1px solid var(--term-border);
+    background: var(--term-titlebar); color: var(--term-text);
+    font-family: var(--font-mono); font-size: 12.5px; padding: 0 16px; cursor: pointer;
+  }
+
+  .cta { display: flex; gap: 12px; margin-top: 26px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14.5px; text-decoration: none; padding: 12px 20px; border-radius: var(--r-button); }
+  .btn-primary { background: var(--accent); color: var(--paper-raised); }
+  .btn-secondary { background: transparent; color: var(--ink); border: 1px solid #C9BFAE; }
+
+  /* --- terminal demo --- */
+  .term {
+    background: var(--term-bg); border-radius: var(--r-term);
+    border: 1px solid var(--term-border); box-shadow: var(--shadow-term);
+    overflow: hidden; font-family: var(--font-mono);
+  }
+  .term .bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 15px; background: var(--term-titlebar); border-bottom: 1px solid var(--term-border);
+  }
+  .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .term .path { margin-left: 9px; color: var(--term-dim); font-size: 12px; }
+  .term .body { padding: 18px 20px 22px; font-size: 13px; line-height: var(--lh-code); color: var(--term-text); }
+  .term .muted { color: var(--term-dim); }
+  .term .accent { color: var(--accent); font-weight: 700; }
+  .rule { color: #3A352F; margin: 3px 0 12px; }
+  .row { display: flex; gap: 14px; margin: 4px 0; }
+  .row .kw { color: var(--accent); width: 62px; flex: none; }
+  .row .desc { color: #B8B0A3; }
+
+  @media (max-width: 880px) {
+    .hero { grid-template-columns: 1fr; gap: 36px; }
+    nav.links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="chev">&#10095;</span><span>halpme</span><span class="hm-cursor"></span>
+      </div>
+      <nav class="links">
+        <a href="#">Docs</a><a href="#">Topics</a><a href="#">Install</a><a href="#">Source</a>
+      </nav>
+      <a class="gh" href="https://github.com/halpme-sh/halpme">GitHub <span>&#8599;</span></a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Open-source CLI &nbsp;&middot;&nbsp; zsh + glow</div>
+      <div class="wordmark"><span class="chev">&#10095;</span>halpme<span class="hm-cursor"></span></div>
+      <h1>Terminal help for <em>your</em> setup.</h1>
+      <p class="lede">Document your aliases, workflows, and tool configs in Markdown — then find them instantly, right where you work.</p>
+
+      <div class="cmd">
+        <div class="line"><span class="p">$</span> npx skills add halpme-sh/halpme</div>
+        <button onclick="navigator.clipboard&&navigator.clipboard.writeText('npx skills add halpme-sh/halpme');this.textContent='copied \u2713';setTimeout(()=>this.textContent='copy',1600)">copy</button>
+      </div>
+
+      <div class="cta">
+        <a class="btn btn-primary" href="https://github.com/halpme-sh/halpme">View on GitHub</a>
+        <a class="btn btn-secondary" href="https://halpme.sh">halpme.sh &#8599;</a>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="bar">
+        <span class="dot" style="background:var(--dot-red)"></span>
+        <span class="dot" style="background:var(--dot-yellow)"></span>
+        <span class="dot" style="background:var(--dot-green)"></span>
+        <span class="path">halpme &mdash; ~/.config/halpme</span>
+      </div>
+      <div class="body">
+        <div class="muted"><span style="color:var(--accent)">$</span> halpme</div>
+        <div style="height:14px"></div>
+        <div class="accent">halpme &middot; your guide</div>
+        <div class="rule">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</div>
+        <div class="row"><span class="kw">git</span><span class="desc">Daily aliases &amp; undo commands</span></div>
+        <div class="row"><span class="kw">shell</span><span class="desc">Navigation, history &amp; prompt tweaks</span></div>
+        <div class="row"><span class="kw">brew</span><span class="desc">Package management &amp; upgrades</span></div>
+        <div class="row"><span class="kw">docker</span><span class="desc">Containers, compose &amp; cleanup</span></div>
+        <div class="row"><span class="kw">ssh</span><span class="desc">Hosts, tunnels &amp; key management</span></div>
+        <div style="height:14px"></div>
+        <div class="muted">type <span style="color:var(--term-text)">halpme &lt;topic&gt;</span> to jump &#8594;</div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

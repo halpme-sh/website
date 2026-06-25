@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Monaspace Neon';font-style:normal;font-weight:400;font-display:swap;src:url(https://cdn.jsdelivr.net/fontsource/fonts/monaspace-neon@latest/latin-400-normal.woff2) format('woff2');}
+  @font-face{font-family:'Monaspace Neon';font-style:normal;font-weight:500;font-display:swap;src:url(https://cdn.jsdelivr.net/fontsource/fonts/monaspace-neon@latest/latin-500-normal.woff2) format('woff2');}
+  @font-face{font-family:'Monaspace Neon';font-style:normal;font-weight:700;font-display:swap;src:url(https://cdn.jsdelivr.net/fontsource/fonts/monaspace-neon@latest/latin-700-normal.woff2) format('woff2');}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#EFE8DC;}
+  @keyframes hm-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+  ::selection{background:#E0654A;color:#FCFAF5;}
+</style>
+</helmet>
+
+<div ref="{{ rootRef }}" style="background:#F6F1E9;color:#211E1B;font-family:'Hanken Grotesk',system-ui,sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased;">
+
+  <!-- ============ NAV ============ -->
+  <header style="position:sticky;top:0;z-index:30;background:rgba(246,241,233,0.82);backdrop-filter:blur(14px);border-bottom:1px solid #E4DCCF;">
+    <div style="max-width:1140px;margin:0 auto;padding:13px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <div style="display:flex;align-items:center;gap:9px;font-family:'Monaspace Neon',ui-monospace,monospace;font-weight:700;font-size:18px;letter-spacing:-0.02em;">
+        <span style="color:var(--accent,#E0654A);">&#10095;</span>
+        <span>halpme</span>
+        <span style="display:inline-block;width:0.52em;height:1.05em;background:var(--accent,#E0654A);transform:translateY(2px);animation:hm-blink 1.1s steps(1,end) infinite;border-radius:1px;"></span>
+      </div>
+      <nav style="display:flex;gap:30px;font-size:14px;font-weight:500;color:#4A443E;">
+        <a href="#identity" style="color:inherit;text-decoration:none;">Identity</a>
+        <a href="#color" style="color:inherit;text-decoration:none;">Color</a>
+        <a href="#type" style="color:inherit;text-decoration:none;">Type</a>
+        <a href="#components" style="color:inherit;text-decoration:none;">Components</a>
+        <a href="#voice" style="color:inherit;text-decoration:none;">Voice</a>
+      </nav>
+      <a href="https://github.com/halpme-sh/halpme" style="display:inline-flex;align-items:center;gap:7px;font-family:'Monaspace Neon',monospace;font-size:13px;font-weight:500;color:#211E1B;text-decoration:none;border:1px solid #211E1B;border-radius:8px;padding:7px 13px;">GitHub <span style="color:var(--accent,#E0654A);">&#8599;</span></a>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section style="border-bottom:1px solid #E4DCCF;">
+    <div style="max-width:1140px;margin:0 auto;padding:74px 40px 78px;display:grid;grid-template-columns:1.04fr 0.96fr;gap:56px;align-items:center;">
+      <div>
+        <div style="font-family:'Monaspace Neon',monospace;font-size:12px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent,#E0654A);margin-bottom:26px;">Brand &amp; Design System &nbsp;&middot;&nbsp; v1.0</div>
+        <div style="display:flex;align-items:center;gap:4px;font-family:'Monaspace Neon',monospace;font-weight:700;font-size:64px;letter-spacing:-0.04em;line-height:1;margin-bottom:28px;">
+          <span style="color:var(--accent,#E0654A);margin-right:10px;">&#10095;</span>
+          <span>halpme</span>
+          <span style="display:inline-block;width:0.5em;height:1em;background:var(--accent,#E0654A);margin-left:6px;animation:hm-blink 1.1s steps(1,end) infinite;border-radius:2px;"></span>
+        </div>
+        <h1 style="font-family:var(--heading-font,'Hanken Grotesk',system-ui,sans-serif);font-size:30px;line-height:1.18;font-weight:700;letter-spacing:-0.02em;margin:0 0 16px;max-width:18ch;text-wrap:balance;">Terminal help for <span style="font-style:italic;color:var(--accent,#E0654A);">your</span> setup.</h1>
+        <p style="font-size:16.5px;line-height:1.6;color:#6E665C;margin:0 0 30px;max-width:46ch;">Document your aliases, workflows, and tool configs in Markdown — then find them instantly, right where you work.</p>
+
+        <div style="display:flex;align-items:stretch;gap:0;max-width:430px;border:1px solid #211E1B;border-radius:10px;overflow:hidden;background:#1B1916;font-family:'Monaspace Neon',monospace;">
+          <div style="flex:1;display:flex;align-items:center;gap:10px;padding:13px 16px;font-size:13.5px;color:#E9E2D6;overflow:hidden;white-space:nowrap;">
+            <span style="color:var(--accent,#E0654A);">$</span> npx skills add halpme-sh/halpme
+          </div>
+          <button onClick="{{ copyInstall }}" style="border:none;border-left:1px solid #2E2A25;background:#22201C;color:#E9E2D6;font-family:'Monaspace Neon',monospace;font-size:12.5px;padding:0 16px;cursor:pointer;white-space:nowrap;">{{ copyLabel }}</button>
+        </div>
+
+        <div style="display:flex;gap:12px;margin-top:26px;">
+          <a href="https://github.com/halpme-sh/halpme" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent,#E0654A);color:#FCFAF5;font-weight:600;font-size:14.5px;text-decoration:none;padding:12px 20px;border-radius:9px;">View on GitHub</a>
+          <a href="https://halpme.sh" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:#211E1B;font-weight:600;font-size:14.5px;text-decoration:none;padding:12px 20px;border-radius:9px;border:1px solid #C9BFAE;">halpme.sh &#8599;</a>
+        </div>
+      </div>
+
+      <!-- terminal demo -->
+      <div style="background:#1B1916;border-radius:13px;border:1px solid #2E2A25;box-shadow:0 30px 70px -28px rgba(33,30,27,0.55);overflow:hidden;font-family:'Monaspace Neon',ui-monospace,monospace;">
+        <div style="display:flex;align-items:center;gap:8px;padding:12px 15px;background:#22201C;border-bottom:1px solid #2E2A25;">
+          <span style="width:11px;height:11px;border-radius:50%;background:#FF5F57;display:inline-block;"></span>
+          <span style="width:11px;height:11px;border-radius:50%;background:#FEBC2E;display:inline-block;"></span>
+          <span style="width:11px;height:11px;border-radius:50%;background:#28C840;display:inline-block;"></span>
+          <span style="margin-left:9px;color:#7E776B;font-size:12px;">halpme &mdash; ~/.config/halpme</span>
+        </div>
+        <div style="padding:18px 20px 22px;font-size:13px;line-height:1.7;color:#E9E2D6;min-height:340px;">
+          <div style="display:flex;gap:6px;margin-bottom:18px;">
+            <button onClick="{{ setBrowse }}" style="background:transparent;border:1px solid #2E2A25;border-radius:7px;color:#B8B0A3;font-family:inherit;font-size:12px;padding:5px 11px;cursor:pointer;"><sc-if value="{{ isBrowse }}" hint-placeholder-val="{{ true }}"><span style="color:var(--accent,#E0654A);">&#10095; </span></sc-if>halpme</button>
+            <button onClick="{{ setGit }}" style="background:transparent;border:1px solid #2E2A25;border-radius:7px;color:#B8B0A3;font-family:inherit;font-size:12px;padding:5px 11px;cursor:pointer;"><sc-if value="{{ isGit }}" hint-placeholder-val="{{ false }}"><span style="color:var(--accent,#E0654A);">&#10095; </span></sc-if>halpme git</button>
+            <button onClick="{{ setBrew }}" style="background:transparent;border:1px solid #2E2A25;border-radius:7px;color:#B8B0A3;font-family:inherit;font-size:12px;padding:5px 11px;cursor:pointer;"><sc-if value="{{ isBrew }}" hint-placeholder-val="{{ false }}"><span style="color:var(--accent,#E0654A);">&#10095; </span></sc-if>halpme brew</button>
+          </div>
+
+          <sc-if value="{{ isBrowse }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <div style="color:#7E776B;"><span style="color:var(--accent,#E0654A);">$</span> halpme</div>
+              <div style="height:14px;"></div>
+              <div style="color:var(--accent,#E0654A);font-weight:700;">halpme &middot; your guide</div>
+              <div style="color:#3A352F;margin:3px 0 12px;">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</div>
+              <div style="display:flex;gap:14px;margin:4px 0;"><span style="color:var(--accent,#E0654A);width:62px;flex:none;">git</span><span style="color:#B8B0A3;">Daily aliases &amp; undo commands</span></div>
+              <div style="display:flex;gap:14px;margin:4px 0;"><span style="color:var(--accent,#E0654A);width:62px;flex:none;">shell</span><span style="color:#B8B0A3;">Navigation, history &amp; prompt tweaks</span></div>
+              <div style="display:flex;gap:14px;margin:4px 0;"><span style="color:var(--accent,#E0654A);width:62px;flex:none;">brew</span><span style="color:#B8B0A3;">Package management &amp; upgrades</span></div>
+              <div style="display:flex;gap:14px;margin:4px 0;"><span style="color:var(--accent,#E0654A);width:62px;flex:none;">docker</span><span style="color:#B8B0A3;">Containers, compose &amp; cleanup</span></div>
+              <div style="display:flex;gap:14px;margin:4px 0;"><span style="color:var(--accent,#E0654A);width:62px;flex:none;">ssh</span><span style="color:#B8B0A3;">Hosts, tunnels &amp; key management</span></div>
+              <div style="height:14px;"></div>
+              <div style="color:#7E776B;">type <span style="color:#E9E2D6;">halpme &lt;topic&gt;</span> to jump &#8594;</div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isGit }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <div style="color:#7E776B;"><span style="color:var(--accent,#E0654A);">$</span> halpme git</div>
+              <div style="height:14px;"></div>
+              <div style="color:var(--accent,#E0654A);font-weight:700;font-size:15px;"># Git Workflow</div>
+              <div style="color:#8A8275;margin:4px 0 12px;">Daily git aliases and undo commands</div>
+              <div style="background:#15130F;border:1px solid #2A2620;border-radius:8px;padding:13px 15px;color:#CFC8BB;">
+                <div><span style="color:var(--accent-2,#1F9E86);">gs</span>&nbsp;&nbsp;&nbsp;= git status -sb</div>
+                <div><span style="color:var(--accent-2,#1F9E86);">gl</span>&nbsp;&nbsp;&nbsp;= git log --oneline -20</div>
+                <div><span style="color:var(--accent-2,#1F9E86);">undo</span> = git reset --soft HEAD~1</div>
+                <div><span style="color:var(--accent-2,#1F9E86);">wip</span>&nbsp;&nbsp;= git commit -m "wip" --no-verify</div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isBrew }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <div style="color:#7E776B;"><span style="color:var(--accent,#E0654A);">$</span> halpme brew</div>
+              <div style="height:14px;"></div>
+              <div style="color:var(--accent,#E0654A);font-weight:700;font-size:15px;"># Homebrew</div>
+              <div style="color:#8A8275;margin:4px 0 12px;">Package management &amp; upgrades</div>
+              <div style="background:#15130F;border:1px solid #2A2620;border-radius:8px;padding:13px 15px;color:#CFC8BB;">
+                <div><span style="color:var(--accent-2,#1F9E86);">brew bundle dump</span>  # snapshot &#8594; Brewfile</div>
+                <div><span style="color:var(--accent-2,#1F9E86);">brew leaves</span>        # top-level installs</div>
+                <div><span style="color:var(--accent-2,#1F9E86);">brew cleanup -s</span>    # reclaim disk</div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IDENTITY ============ -->
+  <section id="identity" style="border-bottom:1px solid #E4DCCF;">
+    <div style="max-width:1140px;margin:0 auto;padding:84px 40px;">
+      <div style="font-family:'Monaspace Neon',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent,#E0654A);margin-bottom:14px;">01 &mdash; Identity</div>
+      <h2 style="font-family:var(--heading-font,'Hanken Grotesk',sans-serif);font-size:34px;font-weight:700;letter-spacing:-0.02em;margin:0 0 14px;">The mark is a live prompt</h2>
+      <p style="font-size:16px;color:#6E665C;max-width:62ch;line-height:1.6;margin:0 0 44px;">The wordmark is set in monospace and ends in a blinking block cursor — the tool is always at the prompt, waiting to halp. The chevron <span style="font-family:'Monaspace Neon',monospace;color:var(--accent,#E0654A);">&#10095;</span> signals "you are in the terminal." Lowercase, always.</p>
+
+      <!-- lockups -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+        <div style="background:#FCFAF5;border:1px solid #E4DCCF;border-radius:14px;padding:46px;display:flex;flex-direction:column;justify-content:space-between;min-height:200px;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9B9384;">Primary lockup</div>
+          <div style="display:flex;align-items:center;font-family:'Monaspace Neon',monospace;font-weight:700;font-size:44px;letter-spacing:-0.04em;">
+            <span style="color:var(--accent,#E0654A);margin-right:12px;">&#10095;</span>halpme<span style="display:inline-block;width:0.5em;height:1em;background:var(--accent,#E0654A);margin-left:6px;border-radius:2px;animation:hm-blink 1.1s steps(1,end) infinite;"></span>
+          </div>
+        </div>
+        <div style="background:#FCFAF5;border:1px solid #E4DCCF;border-radius:14px;padding:46px;display:flex;flex-direction:column;justify-content:space-between;min-height:200px;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9B9384;">Wordmark only</div>
+          <div style="font-family:'Monaspace Neon',monospace;font-weight:700;font-size:44px;letter-spacing:-0.04em;">halpme</div>
+        </div>
+      </div>
+
+      <!-- app icon + on-color -->
+      <div style="display:grid;grid-template-columns:0.8fr 1fr 1fr;gap:20px;">
+        <div style="background:#FCFAF5;border:1px solid #E4DCCF;border-radius:14px;padding:36px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:24px;min-height:200px;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9B9384;align-self:flex-start;">App icon</div>
+          <div style="width:96px;height:96px;border-radius:24px;background:#211E1B;display:flex;align-items:center;justify-content:center;gap:3px;font-family:'Monaspace Neon',monospace;font-weight:700;font-size:34px;">
+            <span style="color:var(--accent,#E0654A);">&#10095;</span><span style="display:inline-block;width:0.42em;height:0.9em;background:#E9E2D6;border-radius:2px;animation:hm-blink 1.1s steps(1,end) infinite;"></span>
+          </div>
+          <div style="height:8px;"></div>
+        </div>
+        <div style="background:#211E1B;border-radius:14px;padding:46px;display:flex;flex-direction:column;justify-content:space-between;min-height:200px;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7E776B;">Reversed</div>
+          <div style="display:flex;align-items:center;color:#F6F1E9;font-family:'Monaspace Neon',monospace;font-weight:700;font-size:36px;letter-spacing:-0.04em;"><span style="color:var(--accent,#E0654A);margin-right:10px;">&#10095;</span>halpme<span style="display:inline-block;width:0.5em;height:1em;background:var(--accent,#E0654A);margin-left:6px;border-radius:2px;"></span></div>
+        </div>
+        <div style="background:var(--accent,#E0654A);border-radius:14px;padding:46px;display:flex;flex-direction:column;justify-content:space-between;min-height:200px;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#FCEFE9;">On accent</div>
+          <div style="display:flex;align-items:center;color:#FCFAF5;font-family:'Monaspace Neon',monospace;font-weight:700;font-size:36px;letter-spacing:-0.04em;"><span style="margin-right:10px;opacity:0.7;">&#10095;</span>halpme<span style="display:inline-block;width:0.5em;height:1em;background:#FCFAF5;margin-left:6px;border-radius:2px;"></span></div>
+        </div>
+      </div>
+
+      <!-- do / don't -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:34px;">
+        <div style="border:1px solid #C8E0D6;background:#F1F8F4;border-radius:12px;padding:22px;">
+          <div style="display:flex;align-items:center;gap:7px;font-family:'Monaspace Neon',monospace;font-size:12px;color:var(--accent-2,#1F9E86);font-weight:500;margin-bottom:14px;">&#10003; DO</div>
+          <div style="font-family:'Monaspace Neon',monospace;font-weight:700;font-size:21px;">halpme<span style="display:inline-block;width:0.5em;height:1em;background:var(--accent,#E0654A);margin-left:3px;border-radius:1px;transform:translateY(2px);"></span></div>
+          <p style="font-size:13px;color:#6E665C;margin:14px 0 0;line-height:1.5;">Lowercase, mono, cursor in accent.</p>
+        </div>
+        <div style="border:1px solid #E9CFC8;background:#FBF1EE;border-radius:12px;padding:22px;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:12px;color:#C9512F;font-weight:500;margin-bottom:14px;">&#10007; DON'T</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:21px;">Halpme</div>
+          <p style="font-size:13px;color:#6E665C;margin:14px 0 0;line-height:1.5;">Don't capitalize or set in a sans.</p>
+        </div>
+        <div style="border:1px solid #E9CFC8;background:#FBF1EE;border-radius:12px;padding:22px;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:12px;color:#C9512F;font-weight:500;margin-bottom:14px;">&#10007; DON'T</div>
+          <div style="font-family:'Monaspace Neon',monospace;font-weight:700;font-size:21px;transform:scaleX(1.5);transform-origin:left;">halpme</div>
+          <p style="font-size:13px;color:#6E665C;margin:14px 0 0;line-height:1.5;">Don't stretch, condense, or skew.</p>
+        </div>
+        <div style="border:1px solid #E9CFC8;background:#FBF1EE;border-radius:12px;padding:22px;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:12px;color:#C9512F;font-weight:500;margin-bottom:14px;">&#10007; DON'T</div>
+          <div style="font-family:'Monaspace Neon',monospace;font-weight:700;font-size:21px;text-shadow:2px 2px 0 #E0654A,0 0 12px rgba(224,101,74,0.6);">halpme</div>
+          <p style="font-size:13px;color:#6E665C;margin:14px 0 0;line-height:1.5;">No shadows, glows, or outlines.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COLOR ============ -->
+  <section id="color" style="border-bottom:1px solid #E4DCCF;">
+    <div style="max-width:1140px;margin:0 auto;padding:84px 40px;">
+      <div style="font-family:'Monaspace Neon',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent,#E0654A);margin-bottom:14px;">02 &mdash; Color</div>
+      <h2 style="font-family:var(--heading-font,'Hanken Grotesk',sans-serif);font-size:34px;font-weight:700;letter-spacing:-0.02em;margin:0 0 14px;">Warm paper, ink, two signals</h2>
+      <p style="font-size:16px;color:#6E665C;max-width:62ch;line-height:1.6;margin:0 0 44px;">A warm, low-saturation base keeps long docs comfortable. Coral is the brand voice and primary action; teal is reserved for keywords, success, and matches inside output. Both share the same lightness and chroma — only the hue changes.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:30px;">
+        <div style="border:1px solid #E4DCCF;border-radius:14px;overflow:hidden;background:#FCFAF5;">
+          <div style="height:120px;background:var(--accent,#E0654A);"></div>
+          <div style="padding:16px 17px;">
+            <div style="font-weight:700;font-size:15px;">Coral</div>
+            <div style="font-family:'Monaspace Neon',monospace;font-size:11.5px;color:#8A8275;margin-top:2px;">--accent</div>
+            <div style="font-family:'Monaspace Neon',monospace;font-size:12px;margin-top:10px;">#E0654A</div>
+            <div style="font-family:'Monaspace Neon',monospace;font-size:11px;color:#9B9384;">oklch(.68 .15 35)</div>
+          </div>
+        </div>
+        <div style="border:1px solid #E4DCCF;border-radius:14px;overflow:hidden;background:#FCFAF5;">
+          <div style="height:120px;background:var(--accent-2,#1F9E86);"></div>
+          <div style="padding:16px 17px;">
+            <div style="font-weight:700;font-size:15px;">Teal</div>
+            <div style="font-family:'Monaspace Neon',monospace;font-size:11.5px;color:#8A8275;margin-top:2px;">--accent-2</div>
+            <div style="font-family:'Monaspace Neon',monospace;font-size:12px;margin-top:10px;">#1F9E86</div>
+            <div style="font-family:'Monaspace Neon',monospace;font-size:11px;color:#9B9384;">oklch(.68 .12 175)</div>
+          </div>
+        </div>
+        <div style="border:1px solid #E4DCCF;border-radius:14px;overflow:hidden;background:#FCFAF5;">
+          <div style="height:120px;background:#211E1B;"></div>
+          <div style="padding:16px 17px;">
+            <div style="font-weight:700;font-size:15px;">Ink</div>
+            <div style="font-family:'Monaspace Neon',monospace;font-size:11.5px;color:#8A8275;margin-top:2px;">--ink</div>
+            <div style="font-family:'Monaspace Neon',monospace;font-size:12px;margin-top:10px;">#211E1B</div>
+            <div style="font-family:'Monaspace Neon',monospace;font-size:11px;color:#9B9384;">oklch(.24 .008 60)</div>
+          </div>
+        </div>
+        <div style="border:1px solid #E4DCCF;border-radius:14px;overflow:hidden;background:#FCFAF5;">
+          <div style="height:120px;background:#F6F1E9;border-bottom:1px solid #E4DCCF;"></div>
+          <div style="padding:16px 17px;">
+            <div style="font-weight:700;font-size:15px;">Paper</div>
+            <div style="font-family:'Monaspace Neon',monospace;font-size:11.5px;color:#8A8275;margin-top:2px;">--paper</div>
+            <div style="font-family:'Monaspace Neon',monospace;font-size:12px;margin-top:10px;">#F6F1E9</div>
+            <div style="font-family:'Monaspace Neon',monospace;font-size:11px;color:#9B9384;">oklch(.96 .01 85)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- neutral ramp + terminal -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div style="border:1px solid #E4DCCF;border-radius:14px;padding:24px;background:#FCFAF5;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9B9384;margin-bottom:16px;">Warm neutrals</div>
+          <div style="display:flex;border-radius:9px;overflow:hidden;height:56px;">
+            <div style="flex:1;background:#FCFAF5;"></div>
+            <div style="flex:1;background:#EDE6DA;"></div>
+            <div style="flex:1;background:#D8CFBF;"></div>
+            <div style="flex:1;background:#B4AA98;"></div>
+            <div style="flex:1;background:#8A8275;"></div>
+            <div style="flex:1;background:#5A544B;"></div>
+            <div style="flex:1;background:#3A352F;"></div>
+            <div style="flex:1;background:#211E1B;"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:'Monaspace Neon',monospace;font-size:10px;color:#9B9384;margin-top:8px;">
+            <span>50</span><span>100</span><span>200</span><span>400</span><span>500</span><span>600</span><span>800</span><span>900</span>
+          </div>
+          <p style="font-size:13px;color:#6E665C;line-height:1.55;margin:18px 0 0;">Body text uses <b>900</b> on paper; secondary text <b>500</b>. Borders use <b>100&ndash;200</b>. Never pure #000 or #FFF.</p>
+        </div>
+        <div style="border:1px solid #E4DCCF;border-radius:14px;padding:24px;background:#FCFAF5;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9B9384;margin-bottom:16px;">Terminal palette (dark)</div>
+          <div style="background:#1B1916;border-radius:9px;padding:18px;font-family:'Monaspace Neon',monospace;font-size:13px;line-height:1.7;">
+            <div style="color:#7E776B;">bg <span style="color:#E9E2D6;">#1B1916</span> &nbsp; text <span style="color:#E9E2D6;">#E9E2D6</span></div>
+            <div><span style="color:var(--accent,#E0654A);">$ keyword</span> &middot; coral prompt</div>
+            <div><span style="color:var(--accent-2,#1F9E86);">match</span> &middot; teal highlight</div>
+            <div style="color:#7E776B;">// dim &middot; #7E776B</div>
+          </div>
+          <p style="font-size:13px;color:#6E665C;line-height:1.55;margin:18px 0 0;">Output mirrors the brand: coral for prompts &amp; topics, teal for matched terms, warm grays for chrome.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TYPE ============ -->
+  <section id="type" style="border-bottom:1px solid #E4DCCF;">
+    <div style="max-width:1140px;margin:0 auto;padding:84px 40px;">
+      <div style="font-family:'Monaspace Neon',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent,#E0654A);margin-bottom:14px;">03 &mdash; Typography</div>
+      <h2 style="font-family:var(--heading-font,'Hanken Grotesk',sans-serif);font-size:34px;font-weight:700;letter-spacing:-0.02em;margin:0 0 44px;">A sans for reading, a mono for doing</h2>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:30px;">
+        <div style="border:1px solid #E4DCCF;border-radius:14px;padding:30px;background:#FCFAF5;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;">
+            <span style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9B9384;">Display / UI</span>
+            <span style="font-weight:600;font-size:14px;">Hanken Grotesk</span>
+          </div>
+          <div style="font-family:'Hanken Grotesk',sans-serif;font-size:62px;font-weight:800;line-height:1;letter-spacing:-0.03em;">Aa</div>
+          <div style="font-family:'Hanken Grotesk',sans-serif;font-size:16px;color:#4A443E;margin-top:14px;">abcdefghijklmnopqrstuvwxyz<br>0123456789 &amp; ? ! &mdash;</div>
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;color:#9B9384;margin-top:14px;">400 &middot; 500 &middot; 600 &middot; 700 &middot; 800</div>
+        </div>
+        <div style="border:1px solid #E4DCCF;border-radius:14px;padding:30px;background:#FCFAF5;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px;">
+            <span style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9B9384;">Code / Brand</span>
+            <span style="font-family:'Monaspace Neon',monospace;font-weight:700;font-size:14px;">Monaspace Neon</span>
+          </div>
+          <div style="font-family:'Monaspace Neon',monospace;font-size:62px;font-weight:700;line-height:1;letter-spacing:-0.04em;">Aa</div>
+          <div style="font-family:'Monaspace Neon',monospace;font-size:15px;color:#4A443E;margin-top:14px;">abcdefghijklmnopqrstuvwxyz<br>0123456789 &amp; ? ! &#10095; &#9601;</div>
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;color:#9B9384;margin-top:14px;">400 &middot; 500 &middot; 700</div>
+        </div>
+      </div>
+
+      <!-- scale -->
+      <div style="border:1px solid #E4DCCF;border-radius:14px;background:#FCFAF5;overflow:hidden;">
+        <div style="display:flex;align-items:baseline;gap:20px;padding:20px 26px;border-bottom:1px solid #EDE6DA;">
+          <span style="font-family:'Monaspace Neon',monospace;font-size:11px;color:#9B9384;width:130px;flex:none;">Display / 48&middot;700</span>
+          <span style="font-family:var(--heading-font,'Hanken Grotesk',sans-serif);font-size:40px;font-weight:700;letter-spacing:-0.03em;">Find it instantly</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:20px;padding:20px 26px;border-bottom:1px solid #EDE6DA;">
+          <span style="font-family:'Monaspace Neon',monospace;font-size:11px;color:#9B9384;width:130px;flex:none;">H2 / 34&middot;700</span>
+          <span style="font-family:var(--heading-font,'Hanken Grotesk',sans-serif);font-size:30px;font-weight:700;letter-spacing:-0.02em;">Your guide, your words</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:20px;padding:20px 26px;border-bottom:1px solid #EDE6DA;">
+          <span style="font-family:'Monaspace Neon',monospace;font-size:11px;color:#9B9384;width:130px;flex:none;">H3 / 21&middot;600</span>
+          <span style="font-family:'Hanken Grotesk',sans-serif;font-size:21px;font-weight:600;">Annotate a section</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:20px;padding:20px 26px;border-bottom:1px solid #EDE6DA;">
+          <span style="font-family:'Monaspace Neon',monospace;font-size:11px;color:#9B9384;width:130px;flex:none;">Body / 16&middot;400</span>
+          <span style="font-family:'Hanken Grotesk',sans-serif;font-size:16px;color:#4A443E;">Topic files live in your config directory — one Markdown file per topic.</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:20px;padding:20px 26px;">
+          <span style="font-family:'Monaspace Neon',monospace;font-size:11px;color:#9B9384;width:130px;flex:none;">Code / 13.5&middot;mono</span>
+          <span style="font-family:'Monaspace Neon',monospace;font-size:13.5px;color:#211E1B;">halpme git&nbsp;&nbsp;<span style="color:#9B9384;"># jump to git sections</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPONENTS ============ -->
+  <section id="components" style="border-bottom:1px solid #E4DCCF;">
+    <div style="max-width:1140px;margin:0 auto;padding:84px 40px;">
+      <div style="font-family:'Monaspace Neon',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent,#E0654A);margin-bottom:14px;">04 &mdash; Components</div>
+      <h2 style="font-family:var(--heading-font,'Hanken Grotesk',sans-serif);font-size:34px;font-weight:700;letter-spacing:-0.02em;margin:0 0 44px;">Building blocks for halpme.sh</h2>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+
+        <!-- buttons -->
+        <div style="border:1px solid #E4DCCF;border-radius:14px;padding:28px;background:#FCFAF5;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9B9384;margin-bottom:20px;">Buttons</div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+            <span style="background:var(--accent,#E0654A);color:#FCFAF5;font-weight:600;font-size:14.5px;padding:11px 20px;border-radius:9px;">Primary</span>
+            <span style="background:transparent;color:#211E1B;font-weight:600;font-size:14.5px;padding:11px 20px;border-radius:9px;border:1px solid #C9BFAE;">Secondary</span>
+            <span style="background:transparent;color:#211E1B;font-weight:600;font-size:14.5px;padding:11px 6px;border-radius:9px;display:inline-flex;align-items:center;gap:6px;">Ghost <span style="color:var(--accent,#E0654A);">&#8594;</span></span>
+          </div>
+          <div style="margin-top:16px;">
+            <span style="background:#211E1B;color:#E9E2D6;font-family:'Monaspace Neon',monospace;font-size:13px;padding:10px 16px;border-radius:9px;display:inline-flex;gap:8px;align-items:center;"><span style="color:var(--accent,#E0654A);">$</span>copy command<span style="color:#7E776B;">&#9112;</span></span>
+          </div>
+        </div>
+
+        <!-- keyword chips -->
+        <div style="border:1px solid #E4DCCF;border-radius:14px;padding:28px;background:#FCFAF5;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9B9384;margin-bottom:20px;">Keyword chips &amp; badges</div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <span style="font-family:'Monaspace Neon',monospace;font-size:13px;background:#FBEAE5;color:#C9512F;padding:6px 12px;border-radius:7px;">git</span>
+            <span style="font-family:'Monaspace Neon',monospace;font-size:13px;background:#FBEAE5;color:#C9512F;padding:6px 12px;border-radius:7px;">shell</span>
+            <span style="font-family:'Monaspace Neon',monospace;font-size:13px;background:#E4F4EE;color:#177A68;padding:6px 12px;border-radius:7px;">brew</span>
+            <span style="font-family:'Monaspace Neon',monospace;font-size:13px;background:#E4F4EE;color:#177A68;padding:6px 12px;border-radius:7px;">docker</span>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:16px;">
+            <span style="font-family:'Monaspace Neon',monospace;font-size:11.5px;background:#211E1B;color:#E9E2D6;padding:5px 11px;border-radius:20px;">v1.0</span>
+            <span style="font-family:'Monaspace Neon',monospace;font-size:11.5px;border:1px solid #C9BFAE;color:#6E665C;padding:5px 11px;border-radius:20px;">MIT</span>
+            <span style="font-family:'Monaspace Neon',monospace;font-size:11.5px;border:1px solid #C9BFAE;color:#6E665C;padding:5px 11px;border-radius:20px;">zsh</span>
+          </div>
+        </div>
+
+        <!-- install block -->
+        <div style="border:1px solid #E4DCCF;border-radius:14px;padding:28px;background:#FCFAF5;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9B9384;margin-bottom:20px;">Command block</div>
+          <div style="background:#1B1916;border-radius:10px;overflow:hidden;font-family:'Monaspace Neon',monospace;">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-bottom:1px solid #2E2A25;">
+              <span style="color:#7E776B;font-size:11px;">install</span>
+              <span style="color:#7E776B;font-size:11px;">&#9112; copy</span>
+            </div>
+            <div style="padding:14px;color:#E9E2D6;font-size:13px;"><span style="color:var(--accent,#E0654A);">$</span> brew install glow</div>
+          </div>
+        </div>
+
+        <!-- callout -->
+        <div style="border:1px solid #E4DCCF;border-radius:14px;padding:28px;background:#FCFAF5;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9B9384;margin-bottom:20px;">Callout</div>
+          <div style="display:flex;gap:14px;background:#F6F1E9;border:1px solid #E4DCCF;border-left:3px solid var(--accent,#E0654A);border-radius:0 10px 10px 0;padding:16px 18px;">
+            <span style="font-family:'Monaspace Neon',monospace;color:var(--accent,#E0654A);font-weight:700;">&#10095;</span>
+            <p style="margin:0;font-size:14px;color:#4A443E;line-height:1.55;">Mark sections with an HTML comment right after the <span style="font-family:'Monaspace Neon',monospace;background:#EDE6DA;padding:1px 5px;border-radius:4px;font-size:12.5px;">###</span> header so they appear in the TOC.</p>
+          </div>
+        </div>
+
+        <!-- topic card -->
+        <div style="border:1px solid #E4DCCF;border-radius:14px;padding:28px;background:#FCFAF5;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9B9384;margin-bottom:20px;">Topic card</div>
+          <div style="border:1px solid #E4DCCF;border-radius:11px;padding:20px;background:#F6F1E9;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+              <span style="font-family:'Monaspace Neon',monospace;font-weight:700;font-size:16px;"><span style="color:var(--accent,#E0654A);">&#10095;</span> git</span>
+              <span style="font-family:'Monaspace Neon',monospace;font-size:11px;color:#9B9384;">12 sections</span>
+            </div>
+            <p style="margin:0;font-size:14px;color:#6E665C;line-height:1.5;">Daily aliases, undo commands, rebase recipes and worktree setup.</p>
+          </div>
+        </div>
+
+        <!-- link styles -->
+        <div style="border:1px solid #E4DCCF;border-radius:14px;padding:28px;background:#FCFAF5;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#9B9384;margin-bottom:20px;">Links &amp; inline</div>
+          <p style="font-size:15px;color:#4A443E;line-height:1.7;margin:0;">Read the <a href="#" style="color:var(--accent,#E0654A);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;">annotation convention</a>, set <span style="font-family:'Monaspace Neon',monospace;background:#EDE6DA;padding:1px 6px;border-radius:5px;font-size:13px;">HALPME_DIR</span>, and your guide is live. Topics jump with <span style="font-family:'Monaspace Neon',monospace;color:var(--accent-2,#1F9E86);">halpme &lt;topic&gt;</span>.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VOICE ============ -->
+  <section id="voice" style="border-bottom:1px solid #E4DCCF;">
+    <div style="max-width:1140px;margin:0 auto;padding:84px 40px;">
+      <div style="font-family:'Monaspace Neon',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent,#E0654A);margin-bottom:14px;">05 &mdash; Voice &amp; tone</div>
+      <h2 style="font-family:var(--heading-font,'Hanken Grotesk',sans-serif);font-size:34px;font-weight:700;letter-spacing:-0.02em;margin:0 0 14px;">Friendly, plain, never precious</h2>
+      <p style="font-size:16px;color:#6E665C;max-width:62ch;line-height:1.6;margin:0 0 44px;">The name is a wink — the writing is straight. Short sentences. Verbs first. We help, we don't lecture.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:30px;">
+        <div style="border:1px solid #E4DCCF;border-radius:14px;padding:26px;background:#FCFAF5;">
+          <div style="font-family:'Monaspace Neon',monospace;font-weight:700;font-size:15px;color:var(--accent,#E0654A);margin-bottom:10px;">Plain over clever</div>
+          <p style="margin:0;font-size:14px;color:#6E665C;line-height:1.55;">Say what it does. Save the jokes for the name and the 404 page.</p>
+        </div>
+        <div style="border:1px solid #E4DCCF;border-radius:14px;padding:26px;background:#FCFAF5;">
+          <div style="font-family:'Monaspace Neon',monospace;font-weight:700;font-size:15px;color:var(--accent,#E0654A);margin-bottom:10px;">Yours, not ours</div>
+          <p style="margin:0;font-size:14px;color:#6E665C;line-height:1.55;">It's <i>your</i> setup, <i>your</i> words. We never call your notes "content."</p>
+        </div>
+        <div style="border:1px solid #E4DCCF;border-radius:14px;padding:26px;background:#FCFAF5;">
+          <div style="font-family:'Monaspace Neon',monospace;font-weight:700;font-size:15px;color:var(--accent,#E0654A);margin-bottom:10px;">Lowercase calm</div>
+          <p style="margin:0;font-size:14px;color:#6E665C;line-height:1.55;">Match the prompt. Lowercase headlines, no exclamation pile-ups.</p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div style="border:1px solid #C8E0D6;background:#F1F8F4;border-radius:14px;padding:26px;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:12px;color:var(--accent-2,#1F9E86);margin-bottom:16px;">&#10003; We say</div>
+          <p style="margin:0 0 10px;font-size:15.5px;color:#211E1B;font-weight:600;">"Terminal help for your setup."</p>
+          <p style="margin:0 0 10px;font-size:15.5px;color:#211E1B;font-weight:600;">"Add a file, add a section — it just shows up."</p>
+          <p style="margin:0;font-size:15.5px;color:#211E1B;font-weight:600;">"Forgot your own alias? halpme git."</p>
+        </div>
+        <div style="border:1px solid #E9CFC8;background:#FBF1EE;border-radius:14px;padding:26px;">
+          <div style="font-family:'Monaspace Neon',monospace;font-size:12px;color:#C9512F;margin-bottom:16px;">&#10007; We don't</div>
+          <p style="margin:0 0 10px;font-size:15.5px;color:#8A8275;text-decoration:line-through;">"The ultimate AI-powered knowledge platform."</p>
+          <p style="margin:0 0 10px;font-size:15.5px;color:#8A8275;text-decoration:line-through;">"Revolutionize your developer experience!!"</p>
+          <p style="margin:0;font-size:15.5px;color:#8A8275;text-decoration:line-through;">"Leverage synergistic documentation."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background:#211E1B;color:#E9E2D6;">
+    <div style="max-width:1140px;margin:0 auto;padding:60px 40px;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;">
+      <div>
+        <div style="display:flex;align-items:center;font-family:'Monaspace Neon',monospace;font-weight:700;font-size:30px;letter-spacing:-0.04em;margin-bottom:14px;"><span style="color:var(--accent,#E0654A);margin-right:9px;">&#10095;</span>halpme<span style="display:inline-block;width:0.5em;height:1em;background:var(--accent,#E0654A);margin-left:5px;border-radius:2px;animation:hm-blink 1.1s steps(1,end) infinite;"></span></div>
+        <p style="margin:0;color:#9B9384;font-size:14px;max-width:42ch;line-height:1.6;">Terminal help for your setup. Open source, MIT-licensed. Brand &amp; design system v1.0.</p>
+      </div>
+      <div style="display:flex;gap:40px;font-family:'Monaspace Neon',monospace;font-size:13px;">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <span style="color:#7E776B;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;">Project</span>
+          <a href="https://halpme.sh" style="color:#E9E2D6;text-decoration:none;">halpme.sh</a>
+          <a href="https://github.com/halpme-sh/halpme" style="color:#E9E2D6;text-decoration:none;">github</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <span style="color:#7E776B;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;">Install</span>
+          <span style="color:#E9E2D6;">npx skills add</span>
+          <span style="color:#E9E2D6;">halpme-sh/halpme</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #2E2A25;">
+      <div style="max-width:1140px;margin:0 auto;padding:18px 40px;display:flex;justify-content:space-between;font-family:'Monaspace Neon',monospace;font-size:12px;color:#7E776B;">
+        <span>&copy; {{ year }} halpme</span>
+        <span>made with care, not slop</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: 1140, &quot;height&quot;: 900 },
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#E0654A&quot;, &quot;options&quot;: [&quot;#E0654A&quot;, &quot;#1F9E86&quot;, &quot;#3B82C4&quot;, &quot;#7A5BD6&quot;, &quot;#211E1B&quot;], &quot;tsType&quot;: &quot;string&quot; },
+  &quot;accentSecondary&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#1F9E86&quot;, &quot;options&quot;: [&quot;#1F9E86&quot;, &quot;#E0654A&quot;, &quot;#C99A2E&quot;, &quot;#3B82C4&quot;], &quot;tsType&quot;: &quot;string&quot; },
+  &quot;headingFont&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;Hanken Grotesk&quot;, &quot;options&quot;: [&quot;Hanken Grotesk&quot;, &quot;Space Grotesk&quot;, &quot;Monospace&quot;], &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  rootRef = React.createRef();
+  state = { copied: false, tab: 'browse' };
+
+  applyVars() {
+    const el = this.rootRef.current;
+    if (!el) return;
+    const { accent, accentSecondary, headingFont } = this.props;
+    if (accent) el.style.setProperty('--accent', accent);
+    if (accentSecondary) el.style.setProperty('--accent-2', accentSecondary);
+    const fm = {
+      'Hanken Grotesk': "'Hanken Grotesk', system-ui, sans-serif",
+      'Space Grotesk': "'Space Grotesk', system-ui, sans-serif",
+      'Monospace': "'Monaspace Neon', ui-monospace, monospace"
+    };
+    if (headingFont && fm[headingFont]) el.style.setProperty('--heading-font', fm[headingFont]);
+  }
+
+  componentDidMount() { this.applyVars(); }
+  componentDidUpdate() { this.applyVars(); }
+
+  copy() {
+    try { navigator.clipboard.writeText('npx skills add halpme-sh/halpme'); } catch (e) {}
+    this.setState({ copied: true });
+    clearTimeout(this._t);
+    this._t = setTimeout(() => this.setState({ copied: false }), 1800);
+  }
+
+  renderVals() {
+    const tab = this.state.tab;
+    return {
+      rootRef: this.rootRef,
+      year: 2026,
+      copyInstall: () => this.copy(),
+      copyLabel: this.state.copied ? 'copied \u2713' : 'copy',
+      setBrowse: () => this.setState({ tab: 'browse' }),
+      setGit: () => this.setState({ tab: 'git' }),
+      setBrew: () => this.setState({ tab: 'brew' }),
+      isBrowse: tab === 'browse',
+      isGit: tab === 'git',
+      isBrew: tab === 'brew'
+    };
+  }
+}
+</script>
+</body>
+</html>

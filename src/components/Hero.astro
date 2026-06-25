@@ -1,0 +1,309 @@
+---
+---
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-left">
+      <div class="eyebrow">Open-source CLI &nbsp;&middot;&nbsp; zsh + glow</div>
+
+      <div class="wordmark" aria-label="halpme">
+        <span class="chev" aria-hidden="true">&#10095;</span>halpme<span class="hm-cursor" aria-hidden="true"></span>
+      </div>
+
+      <h1>Terminal help for <em>your</em> setup.</h1>
+      <p class="lede">
+        Document your aliases, workflows, and tool configs in Markdown —
+        then find them instantly, right where you work.
+      </p>
+
+      <div class="cmd" id="install-cmd">
+        <div class="cmd-line">
+          <span class="prompt" aria-hidden="true">$</span>
+          <span class="cmd-text">npx skills add halpme-sh/halpme</span>
+        </div>
+        <button class="copy-btn" aria-label="Copy install command" data-copy="npx skills add halpme-sh/halpme">
+          copy
+        </button>
+      </div>
+
+      <div class="cta">
+        <a class="btn btn-primary" href="https://github.com/halpme-sh/halpme" target="_blank" rel="noopener noreferrer">
+          View on GitHub
+        </a>
+        <a class="btn btn-secondary" href="#install">Install guide &#8595;</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="term" role="img" aria-label="Terminal output showing halpme in action">
+        <div class="term-bar">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+          <span class="term-path">halpme &mdash; ~/.config/halpme</span>
+        </div>
+        <div class="term-body">
+          <div class="term-line term-dim"><span class="term-accent">$</span> halpme</div>
+          <div class="term-spacer"></div>
+          <div class="term-line term-heading">halpme &middot; your guide</div>
+          <div class="term-rule">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</div>
+          <div class="term-row">
+            <span class="term-kw">git</span>
+            <span class="term-desc">Daily aliases &amp; undo commands</span>
+          </div>
+          <div class="term-row">
+            <span class="term-kw">shell</span>
+            <span class="term-desc">Navigation, history &amp; prompt tweaks</span>
+          </div>
+          <div class="term-row">
+            <span class="term-kw">brew</span>
+            <span class="term-desc">Package management &amp; upgrades</span>
+          </div>
+          <div class="term-row">
+            <span class="term-kw">docker</span>
+            <span class="term-desc">Containers, compose &amp; cleanup</span>
+          </div>
+          <div class="term-row">
+            <span class="term-kw">ssh</span>
+            <span class="term-desc">Hosts, tunnels &amp; key management</span>
+          </div>
+          <div class="term-spacer"></div>
+          <div class="term-line term-dim">
+            type <span class="term-light">halpme &lt;topic&gt;</span> to jump &#8594;
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.copy-btn');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const text = btn.dataset.copy ?? '';
+      navigator.clipboard?.writeText(text).then(() => {
+        btn.textContent = 'copied ✓';
+        setTimeout(() => { btn.textContent = 'copy'; }, 1600);
+      });
+    });
+  }
+</script>
+
+<style>
+  .hero {
+    padding: 74px 0 78px;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.04fr 0.96fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .eyebrow {
+    margin-bottom: 26px;
+  }
+
+  .wordmark {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: var(--fs-wordmark);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 28px;
+  }
+
+  .wordmark .chev {
+    color: var(--accent);
+    margin-right: 10px;
+  }
+
+  .wordmark .hm-cursor {
+    width: 0.48em;
+    height: 0.95em;
+    margin-left: 6px;
+  }
+
+  h1 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    max-width: 18ch;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .lede {
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin-bottom: 30px;
+    max-width: 46ch;
+  }
+
+  /* install command block */
+  .cmd {
+    display: flex;
+    align-items: stretch;
+    max-width: 430px;
+    border: 1px solid var(--ink);
+    border-radius: var(--r-input);
+    overflow: hidden;
+    background: var(--term-bg);
+    font-family: var(--font-mono);
+  }
+
+  .cmd-line {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 16px;
+    font-size: 13.5px;
+    color: var(--term-text);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .prompt {
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .copy-btn {
+    border: none;
+    border-left: 1px solid var(--term-border);
+    background: var(--term-titlebar);
+    color: var(--term-text);
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    padding: 0 16px;
+  }
+
+  .copy-btn:hover {
+    background: var(--term-border);
+  }
+
+  .cta {
+    display: flex;
+    gap: 12px;
+    margin-top: 26px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 14.5px;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: var(--r-button);
+    transition: opacity 0.15s;
+  }
+
+  .btn:hover { opacity: 0.85; }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--paper-raised);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid #C9BFAE;
+  }
+
+  /* terminal demo */
+  .term {
+    background: var(--term-bg);
+    border-radius: var(--r-term);
+    border: 1px solid var(--term-border);
+    box-shadow: var(--shadow-term);
+    overflow: hidden;
+    font-family: var(--font-mono);
+  }
+
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 15px;
+    background: var(--term-titlebar);
+    border-bottom: 1px solid var(--term-border);
+  }
+
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .dot-red    { background: var(--dot-red); }
+  .dot-yellow { background: var(--dot-yellow); }
+  .dot-green  { background: var(--dot-green); }
+
+  .term-path {
+    margin-left: 9px;
+    color: var(--term-dim);
+    font-size: 12px;
+  }
+
+  .term-body {
+    padding: 18px 20px 22px;
+    font-size: 13px;
+    line-height: var(--lh-code);
+    color: var(--term-text);
+  }
+
+  .term-line { display: block; }
+  .term-dim   { color: var(--term-dim); }
+  .term-light { color: var(--term-text); }
+  .term-accent { color: var(--accent); font-weight: 700; }
+  .term-heading { color: var(--accent); font-weight: 700; }
+  .term-spacer { height: 14px; }
+
+  .term-rule {
+    color: #3A352F;
+    margin: 3px 0 12px;
+  }
+
+  .term-row {
+    display: flex;
+    gap: 14px;
+    margin: 4px 0;
+  }
+
+  .term-kw {
+    color: var(--accent);
+    width: 62px;
+    flex-shrink: 0;
+  }
+
+  .term-desc { color: #B8B0A3; }
+
+  @media (max-width: 880px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
+    .wordmark { font-size: 48px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 48px 0 56px; }
+    .wordmark { font-size: 36px; }
+    h1 { font-size: 24px; }
+  }
+</style>
